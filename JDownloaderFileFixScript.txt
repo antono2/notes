@@ -1,0 +1,24 @@
+// Script to Replace a few characters in the filename inside LinkGrabber
+// Trigger: Packagizer Hook
+// Synchronous execution of script = true
+// Strip a sequence of characters like: "&.#40;"
+// Strip Parenthesis and Brackets: "(", ")", "[", "]"
+// Strip Apostrophe and Comma: "'", ","
+// Replace multiple spaces with a single one
+
+
+try {
+    //if (state == "BEFORE") {
+
+        var regex = /(\&#.\d\d?;|[\(\)\[\]\'\,\…\“\”\"\’\‘\!\&])/g;
+        
+        var ln = link.getName();
+        //var ln = "001 James Redfield A Map of Consciousness & Humanity’s Destined Future 017 ‘One to Seven and Back Again’… The Secret of Gods Alphabet Revealed!";
+        
+        if (regex.test(ln)) {
+            link.setPackageName(link.getPackageName().replace(regex, "").replace(/\s+/g, " "));
+            link.setName(ln.replace(regex, "").replace(/\s+/g, " "));
+        }
+        
+    //}
+} catch (e) {};

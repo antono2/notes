@@ -1,0 +1,18 @@
+https://www.jeffgeerling.com/blogs/jeff-geerling/push-your-git-repositories
+
+#On Remote
+mkdir workspace && cd workspace
+#make sure to have a dir with .git for --bare repository on remote
+mkdir [my-project].git
+git --bare init
+
+#On Local
+# no .git needed in dir name
+mkdir [my-project]
+# add some files
+v new
+git init
+git add .
+git commit -m 'Initial Commit'
+git remote add origin serv@h2054422.stratoserver.net:workspace/[my-project].git
+git push origin master

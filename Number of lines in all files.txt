@@ -1,0 +1,5 @@
+cat * | wc -l
+
+or faster
+
+for file in *; do cat "$file"; done | wc -l

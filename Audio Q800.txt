@@ -1,0 +1,26 @@
+#install indicator-sound-switcher https://github.com/yktoo/indicator-sound-switcher
+#https://yktoo.com/en/software/sound-switcher-indicator/#installation
+sudo apt-add-repository ppa:yktooo/ppa
+sudo apt-get update
+sudo apt-get install indicator-sound-switcher
+
+#Audio Switcher on Autostart in Budgie Desktop Settings
+indicator-sound-switcher
+
+#lade pulse audio module bei Neustart in /etc/pulse/default.pa versuchen, siehe https://itectec.com/ubuntu/ubuntu-pulseaudio-equalizer-is-not-working-in-ubuntu-20-04/
+### Modules for the Equalizer
+load-module module-equalizer-sink
+load-module module-dbus-protocol
+
+#fix audio lag https://raspberrypi.stackexchange.com/questions/75967/pulse-audio-is-lagging-and-stuttering
+load-module module-udev-detect tsched=0
+
+#zusaetzlich in /etc/pulse/daemon.conf
+default-fragments = 3
+default-fragment-size-msec = 5
+
+
+
+#damit kann dann das pulse audio equalizer programm gestartet und ueber den sound switcher ausgewaehlt werden
+#gespeichertes Q800 Profil aus https://steamcommunity.com/sharedfiles/filedetails/?id=416514443
+qpaeq

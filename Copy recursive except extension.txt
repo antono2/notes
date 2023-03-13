@@ -1,0 +1,14 @@
+// in current directory find all files except .rar or .part & ersetze bei neuerer Source-Datei
+// ! =     Negation
+// find ! -name "*.avi" -not -name "*.mp*g"
+// sucht Dateien die weder die Dateiendung avi noch mpg oder mpeg haben.
+// Das Ausrufezeichen und -not sind gleichbedeutend.
+// -type T 	sucht nach nur einem Typ, z.B. mit f (=file) echte Dateien
+// oder mit d (=directory) Verzeichnisse. 
+// -pvd --pass-through (Run in copy-pass mode) --verbose --make-directories
+// In copy-pass mode, cpio copies files from one directory tree to another, combining the copy
+// out and copy-in steps without actually using an archive. It reads the list of files to copy
+// from the standard input; the directory into which it will copy them is given as a non-option
+// argument. 
+
+find . ! -name '*.rar' ! -name "*.part" -type f | cpio -pvd /home/anton/Test/

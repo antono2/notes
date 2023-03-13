@@ -1,0 +1,35 @@
+
+#https://www.cloudkaramchari.com/blog/add-ssh-user-in-linux-with-ssh-key-authentication-method/
+# add user serv
+sudo adduser serv --disabled-password
+sudo su - serv
+mkdir .ssh
+chmod 700 .ssh
+touch .ssh/authorized_keys
+chmod 600 .ssh/authorized_keys
+# On local machine generate new keypair 
+# -b more bits if needed
+# -f file_name
+ssh-keygen -t rsa -b 4096 -f strato_rsa
+#copy public key content to server
+.ssh/authorized_keys
+
+#https://www.cloudkaramchari.com/blog/root-permission-to-ssh-user/
+# add serv to sudoers
+usermod -aG sudo serv
+sudo visudo
+# add to the bottom
+
+  serv ALL=(ALL) NOPASSWD:ALL
+
+#https://www.digitalocean.com/community/tutorials/how-to-configure-ssh-key-based-authentication-on-a-linux-server
+# remove password authentication after key authentication works
+sudo vim /etc/ssh/sshd_config
+
+  PasswordAuthentication no
+
+sudo systemctl restart ssh
+
+
+#added to .bash_aliases on local machine
+alias serv='ssh serv@h2054422.stratoserver.net'

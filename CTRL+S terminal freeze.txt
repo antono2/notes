@@ -1,0 +1,8 @@
+https://unix.stackexchange.com/questions/12107/how-to-unfreeze-after-accidentally-pressing-ctrl-s-in-a-terminal
+
+https://superuser.com/questions/1390977/pressing-ctrl-s-by-mistake-while-using-vim
+
+CTRL+Q to unfreeze
+
+//in ~/.bashrc to disable the freeze all together on startup
+stty -ixon

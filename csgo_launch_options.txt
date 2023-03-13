@@ -1,0 +1,1 @@
++fps_max_menu "59" +fps_max "999" -novid alias "+jumpthrow" "+jump;-attack" alias "-jumpthrow" "-jump" bind alt "+jumpthrow"

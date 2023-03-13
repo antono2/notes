@@ -1,0 +1,4 @@
+Ctrl+r to search
+
+Ctrl+r to go step result back
+Ctrl+s to go step result front

@@ -1,0 +1,8 @@
+echo $PATH
+
+export PATH=/home/anton/.local/bin:$PATH
+
+export PATH=/home/anton/workspace/CMake/cmake-3.21.0-linux-x86_64/bin:$PATH
+gilt nur in der offenen Konsole
+
+für permanent ~/.profile editieren

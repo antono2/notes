@@ -1,0 +1,33 @@
+sudo apt install dconf-editor
+
+org -> gnome -> desktop -> peripherals -> mouse
+
+accel-profile -> flat aka. disable mouse acceleration
+speed -> custom value -> 1
+
+
+
+https://askubuntu.com/questions/1065542/how-to-disable-mouse-acceleration-on-ubuntu-18-04
+Here are the mouse settings.
+
+    accel-profile -> sets what kind of acceleration you want to have
+    speed -> sets the mouse speed
+
+You have these options in accel-profile:
+
+    default
+    flat aka. disable mouse acceleration
+    adaptive
+
+To disable mouse acceleration:
+
+    set Use default value to off
+    set Custom value to flat
+
+To change the mouse speed:
+
+    go to org/gnome/desktop/peripherals/mouse/speed
+    set Use default value to off
+    change the Custom value to the number that works for you
+    (the number can be between -1 and 1)
+

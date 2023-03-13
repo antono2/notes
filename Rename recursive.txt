@@ -1,0 +1,191 @@
+// rename [options] 's/[filename element]/[replacement]/' [filename]
+
+//    rename: Invokes the rename command.
+//    [options]: Provides an optional argument that changes the way the command executes.
+//    s: Indicates a substitute expression.
+//    [filename element]: Specifies the part of the filename you want to replace.
+//    [replacement]: Specifies a replacement for the part of the current filename.
+//    [filename]: Defines the file you want to rename.
+
+//verbose (-v) test (-n) for all txt files
+rename -v -n 's/example/test/' *.txt
+
+//escape "?" with "\?"
+rename -v -n 's/Sch\?tzchen/Schätzchen/' ./*
+
+
+// mit find für recursive suche
+find . -name "*.andnav" -exec rename -v 's/\.andnav$/\.tile/i' {} \;
+./0/0.png.andnav renamed as ./0/0.png.tile
+./0/1.png.andnav renamed as ./0/1.png.tile
+./1/0.png.andnav renamed as ./1/0.png.tile
+./1/1.png.andnav renamed as ./1/1.png.tile
+
+# mit -exec [command] {} /;
+# [command] is what you want to execute over results given by the find command.
+# {} is a placeholder that is used to hold results given by the find command.
+# \; says that for each found result, the [command] is executed. You need to escape the ; here and hence \;.
+find . -exec rename -v -n 's/gr\?\?ten\ F\?lle/größten\ Fälle/' {} \;
+
+# or pipe files to STDIN, as rename can read it
+# remove -n (testing) for actual run
+# remove -v (verbos e) to speed it up
+find . | rename -v -n 's/gr\?\?ten\ F\?lle/größten\ Fälle/'
+
+#all renames in one, separated by ; and duplicated because directory renames lead to invalid directory name and the files within remain unchanged
+# https://itsfoss.com/run-multiple-commands-linux/
+#  ;	Command 1 ; Command 2	Run command 1 first and then command 2
+#  &&	Command 1 && Command 2	Run command 2 only if command 1 ends sucessfully
+#  ||	Command 1 || Command 2	Run command 2 only if command 1 fails
+# run this stuff trice (stuff is up to 3 directories deep) using seq qrints a sequence of numbers incrementally
+# in conjunction with the xargs https://wiki.ubuntuusers.de/xargs/
+# get sequence 1, 2, 3 and -I -- (paramaters from file, -- is none), so that the 1 2 3 aren't passed to find/rename
+# then for each run the find & replace
+
+seq 3 | xargs -I -- find -name "*\?*" \
+-exec rename -v "s/B\?se\ \?berraschungen/Böse\ Überraschungen/" {} \; \
+-exec rename -v "s/B\?se.\?berraschungen/Böse.Überraschungen/" {} \; \
+-exec rename -v "s/Böse.Überraschungen/Böse\ Überraschungen/" {} \; \
+-exec rename -v "s/K\?nnen/Können/" {} \; \
+-exec rename -v "s/ngek\?rzt/ngekürzt/" {} \; \
+-exec rename -v "s/hei\?t/heißt/" {} \; \
+-exec rename -v "s/\?1619/§1619/" {} \; \
+-exec rename -v "s/Versp\?tung/Verspätung/" {} \; \
+-exec rename -v "s/Klugschei\?er/Klugscheißer/" {} \; \
+-exec rename -v "s/Schr\?der/Schröder/" {} \; \
+-exec rename -v "s/Begr\?\?ung/Begrüßung/" {} \; \
+-exec rename -v "s/Fr\?her/Früher/" {} \; \
+-exec rename -v "s/M\?ller/Müller/" {} \; \
+-exec rename -v "s/Sch\?neberger/Schöneberger/" {} \; \
+-exec rename -v "s/K\?hnert/Kühnert/" {} \; \
+-exec rename -v "s/M\?rder/Mörder/" {} \; \
+-exec rename -v "s/S\?nden/Sünden/" {} \; \
+-exec rename -v "s/Abgr\?nde/Abgründe/" {} \; \
+-exec rename -v "s/Tod\ l\?sst\ bitten/Tod\ lässt\ bitten/" {} \; \
+-exec rename -v "s/Verr\?terisches/Verräterisches/" {} \; \
+-exec rename -v "s/T\?dliche/Tödliche/" {} \; \
+-exec rename -v "s/Gr\?\?enwahn/Größenwahn/" {} \; \
+-exec rename -v "s/Tollk\?hn/Tollkühn/" {} \; \
+-exec rename -v "s/F\?r/Für/" {} \; \
+-exec rename -v "s/f\?r/für/" {} \; \
+-exec rename -v "s/M\?rchenstunde/Märchenstunde/" {} \; \
+-exec rename -v "s/Kn\?ppel/Knüppel/" {} \; \
+-exec rename -v "s/Froschk\?nig/Froschkönig/" {} \; \
+-exec rename -v "s/Sch\?ne/Schöne/" {} \; \
+-exec rename -v "s/H\?nsel/Hänsel/" {} \; \
+-exec rename -v "s/Schneewei\?chen/Schneeweißchen/" {} \; \
+-exec rename -v "s/J\?rgen/Jürgen/" {} \; \
+-exec rename -v "s/Hormonr\?schen/Hormonröschen/" {} \; \
+-exec rename -v "s/Kr\?tens\?gen/Krötensägen/" {} \; \
+-exec rename -v "s/Fr\?htau/Frühtau/" {} \; \
+-exec rename -v "s/H\?ngt/Hängt/" {} \; \
+-exec rename -v "s/M\?rchen/Märchen/" {} \; \
+-exec rename -v "s/W\?lkchen/Wölkchen/" {} \; \
+-exec rename -v "s/K\?nig/König/" {} \; \
+-exec rename -v "s/Kl\?pfel/Klüpfel/" {} \; \
+-exec rename -v "s/Schlosshotel\ B\?hlerh\?he/Schlosshotel\ Bühlerhöhe/" {} \;
+
+
+seq 3 | xargs -I -- find -name "*\?*" \
+-exec rename -v "s/Kl\?pfel/Klüpfel/" {} \; \
+-exec rename -v "s/Begr\?\?ung/Begrüßung/" {} \; \
+-exec rename -v "s/verschw\?r/verschwör/" {} \; \
+-exec rename -v "s/K\?nig/König/" {} \; \
+-exec rename -v "s/Neue Normalit\?t_/Neue Normalität\?/" {} \; \
+-exec rename -v "s/Biergartenk\?nig/Biergartenkönig/" {} \; \
+-exec rename -v "s/Entf\?hrt/Entführt/" {} \; \
+-exec rename -v "s/T\?ffel/Töffel/" {} \; \
+-exec rename -v "s/Wundergl\?hbirne/Wunderglühbirne/" {} \; \
+-exec rename -v "s/G\?nter/Günter/" {} \; \
+-exec rename -v "s/f\?r/für/" {} \; \
+-exec rename -v "s/Ungek\?rzt/Ungekürzt/" {} \; \
+-exec rename -v "s/umst\?ndehalber/umständehalber/" {} \; \
+-exec rename -v "s/H\?nde/Hände/" {} \; \
+-exec rename -v "s/M\?rchenstunde/Märchenstunde/" {} \; \
+-exec rename -v "s/Bl\?den/Blöden/" {} \; \
+-exec rename -v "s/Bl\?d/Blöd/" {} \; \
+-exec rename -v "s/T\?ff\ T\?ff/Töff\ Töff/" {} \; \
+-exec rename -v "s/Kl\?ta/Klöta/" {} \; \
+-exec rename -v "s/sch\?nstes/schönstes/" {} \; \
+-exec rename -v "s/F\?r/Für/" {} \; \
+-exec rename -v "s/ungek\?rzt/ungekürzt/" {} \; \
+-exec rename -v "s/J\?rgen/Jürgen/" {} \; \
+-exec rename -v "s/vern\?nftig/vernünftig/" {} \; \
+-exec rename -v "s/Lisa\ Eckhart\ \?\ Omama\ \?\ Live\ \?\ Lesung/Lisa\ Eckhart\ Omama\ Live Lesung/" {} \; \
+-exec rename -v "s/B\?sl/Bösl/" {} \; \
+-exec rename -v "s/Literaturcaf\?/Literaturcafé/" {} \; \
+-exec rename -v "s/Br\?der/Brüder/" {} \; \
+-exec rename -v "s/Dopk\?ppchen/Dopköppchen/" {} \; \
+-exec rename -v "s/M\?rchen/Märchen/" {} \; \
+-exec rename -v "s/B\?r/Bär/" {} \;
+
+seq 3 | xargs -I -- find -name "*\?*" \
+-exec rename -v "s/f\?r\?s/für_s/" {} \; \
+-exec rename -v "s/f\?r/für/" {} \; \
+-exec rename -v "s/Ungek\?rzt/Ungekürzt/" {} \; \
+-exec rename -v "s/F\?r/Für/" {} \; \
+-exec rename -v "s/ungek\?rzt/ungekürzt/" {} \; \
+-exec rename -v "s/Pispers\ -\ \?\ bis/Pispers\ -\ bis/" {} \; \
+-exec rename -v "s/Wirtschaftsfl\?chtlinge/Wirtschaftsflüchtlinge/" {} \; \
+-exec rename -v "s/Schl\?fer/Schläfer/" {} \; \
+-exec rename -v "s/\.\?ber/\.über/" {} \; \
+-exec rename -v "s/\ \?ber/\ über/" {} \; \
+-exec rename -v "s/M\?\?\?\?\?\?h/Määääääh/" {} \; \
+-exec rename -v "s/Waffenh\?ndler/Waffenhändler/" {} \; \
+-exec rename -v "s/M\?nner/Männer/" {} \; \
+-exec rename -v "s/k\?nnen/können/" {} \; \
+-exec rename -v "s/geh\?rt/gehört/" {} \; \
+-exec rename -v "s/B\?rbel/Bärbel/" {} \; \
+-exec rename -v "s/Sch\?rfrechte/Schürfrechte/" {} \; \
+-exec rename -v "s/Religi\?se/Religiöse/" {} \; \
+-exec rename -v "s/Pr\?zision/Präzision/" {} \; \
+-exec rename -v "s/Au\?enpolitik/Außenpolitik/" {} \; \
+-exec rename -v "s/b\?sen/bösen/" {} \; \
+-exec rename -v "s/Gro\?e/Große/" {} \; \
+-exec rename -v "s/Arbeitspl\?tze/Arbeitsplätze/" {} \; \
+-exec rename -v "s/\?berversorgung/Überversorgung/" {} \; \
+-exec rename -v "s/L\?sungen/Lösungen/" {} \; \
+-exec rename -v "s/so\?s\ Gescherr/so_s\ Gescherr/" {} \; \
+-exec rename -v "s/Stra\?e/Straße/" {} \; \
+-exec rename -v "s/m\?ssen/müssen/" {} \; \
+-exec rename -v "s/Golfpl\?tze/Golfplätze/" {} \; \
+-exec rename -v "s/M\?llemann-Bl\?m/Möllemann-Blüm/" {} \; \
+-exec rename -v "s/m\?ssen/müssen/" {} \; \
+-exec rename -v "s/Solidarit\?ter/Solidaritäter/" {} \; \
+-exec rename -v "s/Doppelpa\?/Doppelpaß/" {} \; \
+-exec rename -v "s/Gef\?hlte/Gefühlte/" {} \; \
+-exec rename -v "s/Schr\?ders\ Rot-Gr\?n/Schröders\ Rot-Grün/" {} \; \
+-exec rename -v "s/Gl\?ck/Glück/" {} \; \
+-exec rename -v "s/gr\?nen/grünen/" {} \; \
+-exec rename -v "s/au\?er/außer/" {} \; \
+-exec rename -v "s/neulich\ \?\ aktualisierte/neulich\ aktualisierte/" {} \; \
+-exec rename -v "s/Sicherheitsma\?nahmen/Sicherheitsmaßnahmen/" {} \; \
+-exec rename -v "s/Betr\?ger/Betrüger/" {} \; \
+-exec rename -v "s/Geschw\?tz/Geschwätz/" {} \; \
+-exec rename -v "s/Sch\?rfere/Schärfere/" {} \; \
+-exec rename -v "s/M\?ssen/Müssen/" {} \; \
+-exec rename -v "s/dr\?ber/drüber/" {} \; \
+-exec rename -v "s/Gesch\?fte/Geschäfte/" {} \; \
+-exec rename -v "s/Medizinm\?nner/Medizinmänner/" {} \; \
+-exec rename -v "s/Verh\?ltnisse/Verhältnisse/" {} \; \
+-exec rename -v "s/Verteilungsk\?mpfe/Verteilungskämpfe/" {} \; \
+-exec rename -v "s/Rentenl\?cke/Rentenlücke/" {} \; \
+-exec rename -v "s/S\?nftentr\?ger/Sänftenträger/" {} \; \
+-exec rename -v "s/-\ \?\ live/-\ live/" {} \; \
+-exec rename -v "s/\?rztedemo/Ärztedemo/" {} \; \
+-exec rename -v "s/R\?ckblick/Rückblick/" {} \; \
+-exec rename -v "s/Bundespr\?sidenten/Bundespräsidenten/" {} \; \
+-exec rename -v "s/Fr\?hling/Frühling/" {} \; \
+-exec rename -v "s/Produktivit\?t/Produktivität/" {} \; \
+-exec rename -v "s/Wahlm\?glichkeiten/Wahlmöglichkeiten/" {} \; \
+-exec rename -v "s/Leistungstr\?ger/Leistungsträger/" {} \; \
+-exec rename -v "s/H\?tten/Hütten/" {} \; \
+-exec rename -v "s/Rentenl\?ge\ und\ \?ngste/Rentenlüge\ und\ Ängste/" {} \; \
+-exec rename -v "s/L\?sungsans\?tze/Lösungsansätze/" {} \; \
+-exec rename -v "s/Flei\?/Fleiß/" {} \; \
+-exec rename -v "s/\?rzte/Ärzte/" {} \; \
+-exec rename -v "s/M\?ntefering/Müntefering/" {} \; \
+-exec rename -v "s/R\?sler/Rösler/" {} \; \
+-exec rename -v "s/gro\?e/große/" {} \; \
+-exec rename -v "s/L\?gen/Lügen/" {} \; \
+-exec rename -v "s/Wettbewerbsf\?higkeit/Wettbewerbsfähigkeit/" {} \;

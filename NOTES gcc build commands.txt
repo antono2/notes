@@ -1,0 +1,34 @@
+# The prerequisites should already be in ~/workspace/gcc by using from ~/workspace/gcc
+#./contrib/download_prerequisites
+# Also ~/workspace/gcc-build-master dir was created
+# Also flex is required for make sudo apt install flex
+# Docu here https://gcc.gnu.org/install/configure.html
+
+#TARGET for configure --host= is defaulting to the current machine, --target is defaulting to the host
+#-v for verbose
+#--prefix=dirname Specify the toplevel installation directory
+#--program-suffix=12.2 could be used when checking out the 12.2 branch instead of master, but I build from master
+#--disable-multilib to only build for current host (64-bit)
+
+/home/anton/workspace/gcc/configure -v --prefix=/home/anton/workspace/gcc-build-master --disable-multilib
+
+#To find number of cores and threads per core, e.g. this can support 8*2 processing threads
+#lscpu | grep -E '^Thread|^Core|^Socket|^CPU\('
+#CPU(s):                          8
+#Thread(s) per core:              2
+#Core(s) per socket:              4
+#Socket(s):                       1
+
+make -j 16
+
+#no install used, as I didn't want to change the system, but instead just use a newer gcc to compile ~/workspace/kakoune
+
+#Errors:
+#g++: error: gengtype-lex.cc: No such file or directory
+#Used apt-file find gengtype-lex.cc to find -> no output
+#Solution: sudo apt install flex
+
+#Then install to path specified in --prefix=/home/anton/workspace/gcc-build-master
+# install-strip only copies binaries which don't contain the debug symbols
+
+sudo make install-strip

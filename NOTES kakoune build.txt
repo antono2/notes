@@ -1,0 +1,45 @@
+cd ~/workspace
+git clone git@github.com:mawww/kakoune.git
+cd kakoune
+
+# Compiled current v12.2 gcc to ~/workspace/gcc-build-master
+# To use it I made a script to set some environment variables
+# source will make them available in the current terminal session.
+# Just executing the script without source will only work inside the script
+
+source set_environment_stuff_to_newest_gcc.sh
+
+# There is no configure --prefix=/home/anton/workspace/kakoune/bin
+# So use prefix with make
+# https://www.baeldung.com/linux/change-install-dir-make-install
+# EDIT: But prefix isn't handled by the configuration here and will always
+# compile to ./src directory.
+
+make
+
+# (for man pages) just unpacks ./doc/kak.1.gz
+
+make man 
+
+# Move the binary to /home/anton/workspace/kakoune/bin
+
+make PREFIX=/bin DESTDIR=/home/anton/workspace/kakoune install
+
+# Copied kakoune/colors and rc to bin/shared manually
+
+
+
+##### Content of set_environment_stuff_to_newest_gcc.sh
+#!/bin/bash
+export PATH=$HOME/workspace/gcc-build-master/bin:$PATH
+export LD_LIBRARY_PATH=$HOME/workspace/gcc-build-master/lib64:$LD_LIBRARY_PATH
+# To let CMake know
+export CC=$HOME/workspace/gcc-build-master/bin/gcc
+export CXX=$HOME/workspace/gcc-build-master/bin/g++
+export FC=$HOME/workspace/gcc-build-master/bin/gfortran
+
+
+##### Added ~/.bash_aliases to run the environment vars script 
+##### and start kakoune from ~/workspace/kakoune/bin/bin/kak
+
+alias kek='source ~/workspace/kakoune/set_environment_stuff_to_newest_gcc.sh && ~/workspace/kakoune/bin/bin/kak'

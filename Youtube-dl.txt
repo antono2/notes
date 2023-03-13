@@ -1,0 +1,2 @@
+installiert mit pip3 (python3)
+update über pip3 install update youtube-dl

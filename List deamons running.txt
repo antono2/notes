@@ -1,0 +1,7 @@
+To list all running daemons, like speech-dispacher (sd_generic, sd_...)
+ps -eo 'tty,pid,comm' | grep ^?
+
+To Stop use the pid in 
+start-stop-daemon -K --pid ID
+like
+start-stop-daemon -K --pid 43013
