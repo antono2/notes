@@ -1,0 +1,3 @@
+https://askubuntu.com/questions/481/how-do-i-find-the-package-that-provides-a-file
+sudo apt-file update
+apt-file find SDL2/SDL.h
