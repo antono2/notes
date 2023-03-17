@@ -1,0 +1,4 @@
+# this is a comment
+file '/media/anton/Volume/mov/Deutsch/Die Götter müssen verrückt sein/mws-dgmvs_part1.avi'
+file '/media/anton/Volume/mov/Deutsch/Die Götter müssen verrückt sein/mws-dgmvs_part2.avi'
+# out 1980-Die\ Götter\ müssen\ verrückt\ sein.avi
