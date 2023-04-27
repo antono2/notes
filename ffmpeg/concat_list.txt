@@ -1,4 +1,4 @@
 # this is a comment
-file '/media/anton/Volume/mov/Deutsch/Die Götter müssen verrückt sein/mws-dgmvs_part1.avi'
-file '/media/anton/Volume/mov/Deutsch/Die Götter müssen verrückt sein/mws-dgmvs_part2.avi'
-# out 1980-Die\ Götter\ müssen\ verrückt\ sein.avi
+file '/media/anton/Volume/mov/Deutsch/Ronin.German.1998.AC3.DVDRiP.XViD-DH/CD1/ronina.avi'
+file '/media/anton/Volume/mov/Deutsch/Ronin.German.1998.AC3.DVDRiP.XViD-DH/CD2/roninb.avi'
+# 1998-Ronin.avi

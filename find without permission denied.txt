@@ -1,0 +1,2 @@
+# here find and print errors, like permission denied, to /dev/null
+find / -type d -name "*sdk*" -print 2>/dev/null | grep vulkan

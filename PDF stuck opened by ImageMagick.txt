@@ -1,0 +1,8 @@
+https://askubuntu.com/questions/591425/why-do-pdf-documents-open-with-imagemagick
+
+~/.config/mimeapps.list
+
+#comment out 
+image/pdf=display-im6.desktop
+like
+#image/pdf=display-im6.desktop
