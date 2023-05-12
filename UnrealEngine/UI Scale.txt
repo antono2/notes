@@ -1,0 +1,3 @@
+
+ctrl+shift+w
+set Application Scale
