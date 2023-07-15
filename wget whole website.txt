@@ -1,0 +1,13 @@
+#https://superuser.com/questions/1672776/download-whole-website-wget
+
+$ wget -mpEk "url"
+
+ #   Using -m (mirror) instead of -r is preferred as it intuitively downloads assets and you don't have to specify recursion depth, using mirror generally determines the correct depth to return a functioning site.
+ #   The commands -p -E -k ensure that you're not downloading entire pages that might be linked to (e.g. Link to a Twitter profile results in you downloading Twitter code) while including all pre-requisite files (JavaScript, css, etc.) that the site needs. Proper site structure is preserved as well (instead of one big .html file with embedded scripts/stylesheet that can sometimes be the output.
+#    It's fast, I have never had to limit anything to get it to work and the resulting directory looks better than simply using the -r "url" arg and provides better insight into how the site was put together, especially if you're reverse-engineering for educational purposes.
+#    Note that if you're downloading a web-app or a site with lots of JavaScript that was compiled from TypeScript, you won't be able to get the TypeScript that was used initially, only what is compiled and sent to the browser. Take this into consideration if the site is very script heavy.
+
+#or use httrack
+
+$ httrack --ext-depth=1 "url"
+

@@ -1,0 +1,9 @@
+# https://stackoverflow.com/questions/637005/how-to-check-if-x-server-is-running
+
+#!/bin/sh
+ps aux|grep -v grep|grep "/usr/lib/xorg/Xorg"
+EXITSTATUS=$?
+if [ $EXITSTATUS -eq 0 ]; then
+  echo "X server running"
+  exit 1
+fi

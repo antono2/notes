@@ -1,0 +1,8 @@
+https://learnbyexample.github.io/learn_perl_oneliners/in-place-file-editing.html
+
+without backup, replace in place
+perl -i -pe 's/an/AN/g' fruits.txt
+
+
+find ./www.gesetze-im-internet.de2/ -name "*.md" | while read i; do perl -i -pe 's/an/AN/g' "$i"; done
+

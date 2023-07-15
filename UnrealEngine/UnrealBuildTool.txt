@@ -1,0 +1,4 @@
+#Build
+cd ~/workspace/UnrealEngine/Linux_Unreal_Engine5.2.0
+dotnet build Engine/Source/Programs/UnrealBuildTool/UnrealBuildTool.csproj
+

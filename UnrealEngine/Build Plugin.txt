@@ -1,0 +1,2 @@
+# Run UE5 build script on your plugin directory
+

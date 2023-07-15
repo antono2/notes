@@ -1,0 +1,1 @@
+find ~/workspace/adk -name ".ccls-cache" -type d -exec rm -rf {} \;
