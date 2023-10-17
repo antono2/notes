@@ -1,0 +1,4 @@
+https://stackoverflow.com/questions/16956810/how-can-i-find-all-files-containing-a-specific-text-string-on-linux
+
+
+grep -Rnw '/usr/lib/clang/14.0.0/include' -e 'namespace\ std'
