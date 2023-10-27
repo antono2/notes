@@ -2,3 +2,6 @@ https://stackoverflow.com/questions/16956810/how-can-i-find-all-files-containing
 
 
 grep -Rnw '/usr/lib/clang/14.0.0/include' -e 'namespace\ std'
+
+# -s to suppress error messages
+grep -Rnws '/' -e 'hello world'
