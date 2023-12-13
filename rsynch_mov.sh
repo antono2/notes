@@ -17,7 +17,9 @@ while [ $? -ne 0 -a $i -lt $MAX_RETRIES ]
 do
  i=$(($i+1))
  # rsync -avz --progress --partial /rsync/source/folder backupuser@backup.destination.com:/rsync/destination/folder
- rsync -avzr --info=progress2 --partial "/media/anton/Volume/mov" "/media/anton/ADATA HD710 PRO"
+# Note: from/path/ - without the path directory
+#       from/path  - with    the path directory
+ rsync -avzr --info=progress2 --partial "/home/anton/workspace/" "/media/anton/ADATA HD710 PRO/workspace"
 done
 
 if [ $i -eq $MAX_RETRIES ]

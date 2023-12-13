@@ -1,0 +1,4 @@
+https://unix.stackexchange.com/questions/134414/how-to-limit-the-total-resources-memory-of-a-process-and-its-children
+
+# Requires root password
+systemd-run --scope -p MemoryLimit=500M your_executable
