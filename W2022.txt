@@ -1,0 +1,41 @@
+https://www.xcluma.com/xk-w2001-digital-thermostat-regulator-temperature-controller-110-220v-50-110c-ntc-sensor
+
+1. Temperature Measurement Range: - 50 ~ 110°C/ + -0.1 °C
+2. Temperature Control Range: - 50 ~ 110°C/ + -0.1 °C
+3. Temperature Probe Size : 1m
+4. Can Be Used For Domestic Freezer, Water Tanks, Refrigerator, Industrial Chiller, Steamer, Industrial.
+
+Code Table
+P0: Starting Temperature
+P1: Stop Temperature
+P2: Temperature Correction
+P3: Delayed Start
+Package includes:
+1  x  Electronic Temperature Controller  (- 50 ~ 110°C )
+
+
+2 Keys Operation Instruction:
+
+1. In normal working status, screen display real time temperature.
+2. Press UP key once, screen display start temperature.
+3. Press Down key once, screen display stop temperature.
+4. Hold UP key, led flash, press UP or Down to change start temperature.
+5. Hold Down key, led flash, press UP or Down to change stop temperature.
+ 
+
+3 Keys Operation Instruction:
+
+1. In normal working status, screen display real time temperature.
+2. Press UP key once, screen display start temperature.
+3. Press Down key once, screen display stop temperature.
+4. Press SET key, Led display P0, press UP or Down to switch code P0 P1 P2 P3.
+
+Factory reset
+Hold up & down at same time for 3 seconds
+
+Display shows LLL
+Faulty sensor
+
+Display shows HHH
+Detected temperature exceeds measurement range. Please change the use environment
+

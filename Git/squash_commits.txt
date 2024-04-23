@@ -1,0 +1,10 @@
+https://stackoverflow.com/a/61171280
+
+-- Be sure to be on the correct branch
+
+git reset --soft HEAD~2 
+git commit -m "new commit message"
+git push -f
+
+2 means the last two commits will be squashed. You can replace it by any number
+
