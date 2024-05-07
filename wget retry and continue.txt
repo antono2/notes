@@ -1,6 +1,6 @@
 wget --continue --tries=0 --waitretry=1 --timeout=15 --retry-connrefused --retry-on-host-error -O "name.abc" <url>
 
---continue resume download (doesn't work for mp4 files?)
+--continue resume download
 
 --tries=0 Make wget retry indefinetly, except in fatal situations, such as 404.
 
