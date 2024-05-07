@@ -1,0 +1,9 @@
+wget --continue --tries=0 --waitretry=1 --timeout=15 -o "name.abc" <url>
+
+--continue resume download
+
+--tries=0 Make wget to retry infinity except fatal situations such as 404.
+
+--waitretry=1 If you decide to retry many times, it's better to add some short period between each retry.
+
+--timeout=15 unstable link always cause stopping of data flow, the default 900s timeout is too long. There is --dns-timeout, --connect-timeout, and --read-timeout. By specify --timeout, you update them all at the same time.
