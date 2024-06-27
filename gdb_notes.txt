@@ -1,0 +1,49 @@
+# change the gf2 starting directory, as it will use that patch as its working directory; to find source files
+cd /tmp/v_1000
+gf2 ~/workspace/v_fork/v run ~/workspace/v_vulkan_binding_generator/examples/vk_glfw.v
+
+# Configure path to executable and cmd line args
+~/workspace/v_fork/v
+
+run ~/workspace/v_vulkan_binding_generator/examples/vk_glfw.v
+
+
+
+#### set cwd /tmp/v_1000
+
+# around   ${type} does not support indexing
+### v__checker__Checker_index_expr is 66074
+# NOTE: disable kakoune line wrap, since gf2 (gdb frontend)
+# displays line numbers after 99999 as 00001
+break /tmp/v_1000/v.tmp.c:66119
+
+###$$$ gdb doesn't support line numbers > 65535
+###$$$ v.tmp.c has 121341 lines
+###$$$ break /tmp/v_1000/v.tmp.c:65535
+(gdb) break v.tmp.c:65535Breakpoint 1 at 0x84c486: file /tmp/v_1000/v.tmp.c, line 65535.
+(gdb) break v.tmp.c:65536No line 65536 in file "v.tmp.c".
+Make breakpoint pending on future shared library load? (y or [n]) [answered N; input not from terminal]
+(gdb) 
+
+
+
+# remove breakpoint
+info break
+del 3-4
+
+
+info sources
+info functions
+info locals
+info variables
+
+(gdb) set logging enabled on
+
+Now GDB will log to ./gdb.txt. You can tell it which file to use:
+
+(gdb) set logging file ~/workspace/v_fork/gdb.txt
+
+And you can examine the current logging configuration:
+
+(gdb) show logging
+
