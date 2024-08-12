@@ -1,0 +1,4 @@
+# variable bitrate mp3 audio
+# copy video
+
+ffmpeg -i <input.mkv> -c:v copy -c:a mp3 -q:a 0 <output.mp4>
