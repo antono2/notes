@@ -1,0 +1,10 @@
+# https://askubuntu.com/questions/47700/fix-corrupt-ntfs-partition-without-windows
+
+VBoxManage internalcommands createrawvmdk -filename "$HOME/VirtualBox VMs/Win10/sda.vmdk" -rawdisk /dev/sda
+VBoxManage internalcommands createrawvmdk -filename "$HOME/VirtualBox VMs/Win10/sdc.vmdk" -rawdisk /dev/sdc
+VBoxManage internalcommands createrawvmdk -filename "$HOME/VirtualBox VMs/Win10/sdd.vmdk" -rawdisk /dev/sdd
+VBoxManage internalcommands createrawvmdk -filename "$HOME/VirtualBox VMs/Win10/sde.vmdk" -rawdisk /dev/sde
+
+sudo virtualbox
+# attach all hdd.vmdk
+# start windows and check/repair hdd
